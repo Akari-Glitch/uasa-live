@@ -4,7 +4,6 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server, {
   cors:{
     origin: "*"
-    methods:["GET", "POST"]
   }
 })
 const next = require('next')
@@ -12,13 +11,18 @@ const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
 
-
 io.on('connection', socket => {
-  console.log(socket.id)
+
   socket.on('message', (data) => {
     socket.broadcast.emit('message:received', data)
   })
+
+  socket.on('count', (data) =>{
+    socket.broadcast.emit('count:received', data)
+  })
 })
+
+
 
 
 nextApp.prepare().then(() => {
