@@ -26,6 +26,10 @@ const handleCount = ()=>{
 			setCount([...data])
 		})
 
+		return ()=>{
+			socket.off('count:received')
+		}
+
 	}, [count])
 
 	return(

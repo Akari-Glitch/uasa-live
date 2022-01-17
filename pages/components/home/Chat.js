@@ -9,7 +9,6 @@ export default function Chat(){
     const [messages, setMessages] = useState([])
     const [text, setText] = useState("")    
 
-
     const handleChange = (event)=>{
     setText(event.target.value);
   }
@@ -28,12 +27,16 @@ export default function Chat(){
 
 
 useEffect(()=>{
+
     socket.on("message:received", (data) => {
     setMessages([...messages, data]);
         })
 
-   console.log("mensaje")
-}, [messages.length])
+    return ()=>{
+        socket.off("message:received")
+    }
+   
+}, [messages])
 
 
   
