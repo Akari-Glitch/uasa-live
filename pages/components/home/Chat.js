@@ -3,11 +3,14 @@ import { useKey } from "react-use"
 import io from "socket.io-client"
 import  { MessagesContain } from "../../styles/ChatStyles"
 import MessageBox from "./MessageBox"
+import { useReply } from "../../context/reply-context"
 
 const socket = io()
+
 export default function Chat(){
     const [messages, setMessages] = useState([])
-    const [text, setText] = useState("")    
+    const [text, setText] = useState("")        
+    const { replyStatus, setReplyStatus, infoReply, setInfoReply } = useReply();
 
     const handleChange = (event)=>{
     setText(event.target.value);
@@ -16,7 +19,9 @@ export default function Chat(){
   const handlePost = () =>{
      const message = {
         id: new Date().getTime(),
-        text: text 
+        text: text,
+        isReply: replyStatus,
+        infoReply: infoReply 
       }
 
     socket.emit('message', message);
@@ -27,12 +32,13 @@ export default function Chat(){
 
 
 useEffect(()=>{
-
     socket.on("message:received", (data) => {
     setMessages([...messages, data]);
         })
-
+    
     return ()=>{
+        setReplyStatus(false)
+        setInfoReply(null)
         socket.off("message:received")
     }
    
@@ -46,10 +52,15 @@ useEffect(()=>{
 
         <>
             <MessagesContain>
-    {messages.map(msg=>(<MessageBox msg = {[msg.id, msg.text]}  key={String(msg.id) + msg.text}/>))}   
+    {messages.map(msg=>(<MessageBox 
+                        msg = {[msg.id, msg.text]}  
+                        key={String(msg.id) + msg.text}
+                        toReply = {[msg.isReply, msg.infoReply]}/>))}   
             </MessagesContain>
 
     <div>
+
+
       <textarea
         onChange={handleChange}
       ></textarea>

@@ -18,3 +18,8 @@ export const LikeStyles = styled.span`
     cursor: pointer;
     color: black;
 `
+
+export const ReplyStyles = styled.span`
+    cursor: pointer;
+    color: black;
+`

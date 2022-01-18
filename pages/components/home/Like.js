@@ -4,12 +4,13 @@ import { LikeStyles }from "../../styles/ChatStyles"
 import io from "socket.io-client"
 
 const socket = io()
-export default function Like(){
+export default function Like(props){
 
 let [count, setCount] = useState([])
 let [like, setLike] = useState(true)
 
 const handleCount = ()=>{
+
 		setLike(!like)
 		if(like){
 			count.push("")		
@@ -26,18 +27,18 @@ const handleCount = ()=>{
 			setCount([...data])
 		})
 
+		console.log(props.id)
 		return ()=>{
 			socket.off('count:received')
 		}
 
-	}, [count])
+	}, [like])
 
 	return(
 		<>
 		<LikeStyles>
 			<FavoriteIcon onClick={handleCount} />
 			<span>{count.length === 0 ? "" : count.length}</span>
-			
 		</LikeStyles>
 		</>
 		)
