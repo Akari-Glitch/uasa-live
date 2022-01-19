@@ -10,6 +10,7 @@ export default function Like(props){
 let [count, setCount] = useState(0)
 let [like, setLike] = useState(true)
 const {messages, setMessages} = useReply();
+
 let index = messages.map(message => message.id).indexOf(props.id)
 
 const handleCount = ()=>{
