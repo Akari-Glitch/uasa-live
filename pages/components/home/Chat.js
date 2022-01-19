@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useKey } from "react-use"
 import io from "socket.io-client"
-import  { MessagesContain } from "../../styles/ChatStyles"
+import SendIcon from "@mui/icons-material/Send"
+import  { ChatContain } from "../../styles/ChatStyles"
 import MessageBox from "./MessageBox"
 import { useReply } from "../../context/reply-context"
 import Like from "./Like"
@@ -29,6 +30,7 @@ export default function Chat(){
     setMessages([...messages, message]);
     setText("")
    
+
   }
 
 
@@ -36,6 +38,8 @@ useEffect(()=>{
     socket.on("message:received", (data) => {
     setMessages([...messages, data]);
         })
+ let chatBox = document.getElementById("messages-contain")
+   chatBox.scrollTop = chatBox.scrollHeight;
 
     return ()=>{
         setReplyStatus(false)
@@ -52,22 +56,24 @@ useEffect(()=>{
    return(
 
         <>
-            <MessagesContain>
+            <ChatContain>
 
+            <div id="messages-contain" className= "messages-contain">
     {messages.map(msg=>(<MessageBox 
                         msg = {[msg.id, msg.text]}  
                         key={String(msg.id) + msg.text}
                         toReply = {[msg.isReply, msg.infoReply]}/>))}  
-            </MessagesContain>
+            </div>
 
-    <div>
-
-
-      <textarea
+<div className="send-message">
+      <input
+        placeholder="Escribe un mensaje"
         onChange={handleChange}
-      ></textarea>
-      <button onClick={handlePost}></button>
-    </div>
+      ></input>
+      <div className = "send-btn"><SendIcon  onClick={handlePost}/></div>
+
+        </div>
+    </ChatContain>
         </>
     )
 }
