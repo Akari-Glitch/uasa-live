@@ -7,7 +7,6 @@ import { useReply } from "../../context/reply-context"
 export default function Reply(props){
  const { replyStatus, setReplyStatus, setInfoReply} = useReply();
  const handleReply = () => {
- 	console.log(replyStatus)
  	
  	let replyText = document.getElementById(props.idCard).textContent	
  	setInfoReply(replyText)

@@ -1,33 +1,38 @@
 import { useState, useEffect } from "react"
 import FavoriteIcon from  "@mui/icons-material/Favorite";
 import { LikeStyles }from "../../styles/ChatStyles"
+import { useReply } from "../../context/reply-context"
 import io from "socket.io-client"
 
 const socket = io()
 export default function Like(props){
-
-let [count, setCount] = useState([])
+	
+let [count, setCount] = useState(0)
 let [like, setLike] = useState(true)
+const {messages, setMessages} = useReply();
+let index = messages.map(message => message.id).indexOf(props.id)
 
 const handleCount = ()=>{
 
 		setLike(!like)
 		if(like){
-			count.push("")		
+			count = 1
 		}else{
-			count.pop()
+			count = -1
 		}
 		setCount(count)
-		socket.emit('count', count);
-		
-	}
+
+		messages[index].likes = count + messages[index].likes 
+
+		socket.emit('count', messages)
+		setMessages(messages)
+	}	
 
 	useEffect(()=>{
 		socket.on('count:received', (data) =>{
-			setCount([...data])
+			setMessages([...data])
 		})
-
-		console.log(props.id)
+		
 		return ()=>{
 			socket.off('count:received')
 		}
@@ -38,7 +43,7 @@ const handleCount = ()=>{
 		<>
 		<LikeStyles>
 			<FavoriteIcon onClick={handleCount} />
-			<span>{count.length === 0 ? "" : count.length}</span>
+			<span>{messages[index].likes === 0 ? "" : messages[index].likes}</span>
 		</LikeStyles>
 		</>
 		)

@@ -8,7 +8,9 @@ export default function MessageBox(props){
 		<MessageCard >
 			{props.toReply[0] === true ? <p>reply to: {props.toReply[1]} </p> : null}
 			<p id = {props.msg[0]}>{props.msg[1]}</p>
-			<Like id = {String(props.msg[0]) + "like"}/>
+			
+			<Like id = {props.msg[0]}/>
+
 			<Reply idCard = {props.msg[0]}/>
 		</MessageCard>
 		)

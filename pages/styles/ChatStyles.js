@@ -10,7 +10,7 @@ export const MessageCard = styled.div`
 `
 
 export const MessagesContain = styled.div`
-    background:black;
+    background:green;
 	z-index:10;
 `
 

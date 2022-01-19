@@ -4,13 +4,13 @@ import io from "socket.io-client"
 import  { MessagesContain } from "../../styles/ChatStyles"
 import MessageBox from "./MessageBox"
 import { useReply } from "../../context/reply-context"
+import Like from "./Like"
 
 const socket = io()
 
 export default function Chat(){
-    const [messages, setMessages] = useState([])
     const [text, setText] = useState("")        
-    const { replyStatus, setReplyStatus, infoReply, setInfoReply } = useReply();
+    const { replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages} = useReply();
 
     const handleChange = (event)=>{
     setText(event.target.value);
@@ -21,7 +21,8 @@ export default function Chat(){
         id: new Date().getTime(),
         text: text,
         isReply: replyStatus,
-        infoReply: infoReply 
+        infoReply: infoReply,
+        likes: 0
       }
 
     socket.emit('message', message);
@@ -35,7 +36,7 @@ useEffect(()=>{
     socket.on("message:received", (data) => {
     setMessages([...messages, data]);
         })
-    
+
     return ()=>{
         setReplyStatus(false)
         setInfoReply(null)
@@ -52,10 +53,11 @@ useEffect(()=>{
 
         <>
             <MessagesContain>
+
     {messages.map(msg=>(<MessageBox 
                         msg = {[msg.id, msg.text]}  
                         key={String(msg.id) + msg.text}
-                        toReply = {[msg.isReply, msg.infoReply]}/>))}   
+                        toReply = {[msg.isReply, msg.infoReply]}/>))}  
             </MessagesContain>
 
     <div>

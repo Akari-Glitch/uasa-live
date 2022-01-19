@@ -5,10 +5,11 @@ const ReplyContext = React.createContext();
 export function ReplyProvider(props){
 	const [replyStatus, setReplyStatus] = useState(false)
 	const [infoReply, setInfoReply] = useState("");
+    const [messages, setMessages] = useState([])
 
 	const value = useMemo(()=>{
-		return({replyStatus, setReplyStatus, infoReply, setInfoReply})
-	}, [replyStatus])
+		return({replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages})
+	}, [replyStatus, messages])
 
 	return <ReplyContext.Provider value={value} {...props}/>
 }
