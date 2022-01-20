@@ -1,25 +1,43 @@
 import styled from '@emotion/styled'
 
 export const MessageCard = styled.div`
-    background:#0084FF;
-	width: 95%;
+    
+    display:flex;
+    align-items:flex-end;
+    flex-direction:column;
+    width-min: 20%;
     margin-left:auto;
     margin-right:auto;
-	min-height: 60px;
+    min-height: 50px;
+    padding-top:10px;
     color:white;
     z-index:20;
-    border-radius: 10px;
     margin-bottom: 10px;
 
+    .dinamic-message{
+        margin-right: 10px;
+    }
+
+    .text-contain{
+         padding: 20px;
+        background:#0084FF;
+        max-width: 80%;
+        min-width: 40px;
+        border-radius: 10px;
+     margin: 10px;
+
+    }
     p{
+        background:#0084FF;
+    text-align: justify;
   -webkit-line-clamp: ${props => props.clamp};
   -webkit-box-orient: vertical;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-wrap: break-word;
-    }
 
+    }
 `
 
 export const ChatContain = styled.div`
@@ -34,9 +52,8 @@ export const ChatContain = styled.div`
     display:flex;
     flex-direction: column;
     align-items:center;
-	z-index:10;
+    z-index:10;
     border-radius: 10px;
-
 
 .send-message{
     margin-top: 10px;
@@ -44,13 +61,11 @@ export const ChatContain = styled.div`
     display:flex;
     align-items:center;
 }
-
     input{
         height: 50px;
         width: 465px;
     border-radius: 20px; 
     }
-
     .send-btn{;
         margin-left:  3px;
         display: flex;
@@ -63,7 +78,6 @@ export const ChatContain = styled.div`
         width: 45px;
         cursor: pointer;
     }
-
     .messages-contain{
         margin-top:10px;
         height: 90%;
@@ -81,4 +95,3 @@ export const ReplyStyles = styled.span`
     cursor: pointer;
     color: black;
 `
-
