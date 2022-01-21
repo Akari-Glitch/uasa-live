@@ -56,15 +56,21 @@ export const ChatContain = styled.div`
     border-radius: 10px;
 
 .send-message{
-    margin-top: 10px;
     margin-bottom:10px;
     display:flex;
-    align-items:center;
+    flex-direction: column;
 }
     input{
+        padding:0;
+        margin-top:10px;
         height: 50px;
         width: 465px;
     border-radius: 20px; 
+    }
+
+    .contain-input{
+        display:flex;
+        align-items:center;
     }
     .send-btn{;
         margin-left:  3px;
@@ -86,6 +92,8 @@ export const ChatContain = styled.div`
     }
 `
 
+
+
 export const LikeStyles = styled.span`
     cursor: pointer;
     color: black;
@@ -94,4 +102,43 @@ export const LikeStyles = styled.span`
 export const ReplyStyles = styled.span`
     cursor: pointer;
     color: black;
+`
+
+export const ReplyContain = styled.span`
+max-width: 465px;
+display:flex;
+margin-left:5px;
+
+.close-reply{
+    cursor: pointer;
+
+    position:absolute;
+    width: 15px;
+    right:5px;
+}
+
+.text-contain-reply{
+    position:relative;
+    display:flex;
+    color: #8c8c8c;
+    min-width: 100px;
+    border: 1px solid #8c8c8c;
+    border-radius:10px;
+           
+    }
+      p{
+        width:95%;
+        margin-left:auto;
+        margin-right:auto;
+    text-align: justify;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  margin-bottom:10px;
+
+    }
+    
 `

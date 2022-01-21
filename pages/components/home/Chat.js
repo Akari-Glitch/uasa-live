@@ -6,7 +6,7 @@ import  { ChatContain } from "../../styles/ChatStyles"
 import MessageBox from "./MessageBox"
 import { useReply } from "../../context/reply-context"
 import Like from "./Like"
-
+import {ReplyBox} from "./Reply"
 const socket = io()
 
 export default function Chat(){
@@ -65,13 +65,17 @@ useEffect(()=>{
                         toReply = {[msg.isReply, msg.infoReply]}/>))}  
             </div>
 
+
+           
 <div className="send-message">
+    {replyStatus ? <ReplyBox /> : null}
+    <div className="contain-input">
       <input
         placeholder="Escribe un mensaje"
         onChange={handleChange}
       ></input>
       <div className = "send-btn"><SendIcon  onClick={handlePost}/></div>
-
+      </div>
         </div>
     </ChatContain>
         </>

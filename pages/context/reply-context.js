@@ -10,7 +10,7 @@ export function ReplyProvider(props){
 	const value = useMemo(()=>{
 
 		return({replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages})
-	}, [replyStatus, messages])
+	}, [replyStatus, messages, infoReply])
 
 	return <ReplyContext.Provider value={value} {...props}/>
 }

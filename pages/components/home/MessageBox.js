@@ -10,8 +10,9 @@ export default function MessageBox(props){
 
 	return(
 		<MessageCard clamp = {clampLimit}>
-			{props.toReply[0] === true ? <p>reply to: {props.toReply[1]} </p> : null}
 			<span className="text-contain">
+			{props.toReply[0] === true ? <p>reply to: {props.toReply[1]} </p> : null}
+			
 			<p  id = {props.msg[0]}>{props.msg[1]}</p>
 			</span>
 		{/*	<button onClick={()=> {
