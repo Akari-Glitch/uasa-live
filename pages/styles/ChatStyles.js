@@ -19,8 +19,9 @@ export const MessageCard = styled.div`
     }
 
     .reply-contain{
+        margin-top:5px;
         background:white;
-    color: #8c8c8c;
+    color: black;
     text-align:justify;
         padding:5px;
         border-radius:10px;
@@ -35,9 +36,13 @@ export const MessageCard = styled.div`
         }
     }
 
+    .username{
+        color:gray;
+    }
     .text-contain{
-         padding: 20px;
-        background:#0084FF;
+         padding: 10px;
+        color: ${props=>props.textColor};
+        background:${props=>props.bgColor};
         max-width: 80%;
         min-width: 40px;
         border-radius: 10px;
@@ -45,7 +50,7 @@ export const MessageCard = styled.div`
 
     }
     .message{
-        background:#0084FF;
+        background:${props=>props.bgColor};
     text-align: justify;
   -webkit-line-clamp: ${props => props.clamp};
   -webkit-box-orient: vertical;

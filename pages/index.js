@@ -1,26 +1,37 @@
+import {useState} from "react"
 import Head from 'next/head'
 import Image from 'next/image'
 import Chat  from './components/home/Chat'
-import styles from '../styles/Home.module.css'
-import { useSession, signIn, signOut } from "next-auth/react"
 import { ReplyProvider } from "./context/reply-context"
 export default function Home() {
-  const { data: session } = useSession()
-  if (true) {
+
+ const [join, setJoin] = useState(false)
+ const [currentUser, setCurrentUser] = useState("")
+
+  if (join) {
     return (
       <>
+    
       <ReplyProvider>
-      <Chat />
+      <Chat username={currentUser}/>
       </ReplyProvider>
-      {/*  Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>*/}
+      
       </>
     )
   }
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+   
+    <label htmlFor="username">UserName</label>
+     <input id="username"
+            type="text" 
+            placeholder="escribe tu nombre"
+            onChange={(e)=> setCurrentUser(e.target.value) }
+            className="user-name" />
+     
+       <button onClick={()=>{
+      console.log(currentUser)
+      setJoin(!join)}}></button>
     </>
   )
 }

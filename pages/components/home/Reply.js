@@ -7,6 +7,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 
 export default function Reply(props){
  const { replyStatus, setReplyStatus, setInfoReply} = useReply();
+
  const handleReply = () => {
  	
  	let replyText = document.getElementById(props.idCard).textContent	

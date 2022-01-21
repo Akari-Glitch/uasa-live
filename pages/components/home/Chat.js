@@ -9,7 +9,7 @@ import Like from "./Like"
 import {ReplyBox} from "./Reply"
 const socket = io()
 
-export default function Chat(){
+export default function Chat(props){
     const [text, setText] = useState("")        
     const { replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages} = useReply();
 
@@ -23,7 +23,8 @@ export default function Chat(){
         text: text,
         isReply: replyStatus,
         infoReply: infoReply,
-        likes: 0
+        likes: 0,
+        author:props.username
       }
 
     socket.emit('message', message);
@@ -38,6 +39,7 @@ useEffect(()=>{
     socket.on("message:received", (data) => {
     setMessages([...messages, data]);
         })
+
  let chatBox = document.getElementById("messages-contain")
    chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -56,11 +58,14 @@ useEffect(()=>{
    return(
 
         <>
+
             <ChatContain>
 
             <div id="messages-contain" className= "messages-contain">
     {messages.map(msg=>(<MessageBox 
                         msg = {[msg.id, msg.text]}  
+                        authorMsg={msg.author}
+                        currentUsername={props.username}
                         key={String(msg.id) + msg.text}
                         toReply = {[msg.isReply, msg.infoReply]}/>))}  
             </div>

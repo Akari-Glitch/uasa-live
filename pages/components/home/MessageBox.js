@@ -24,8 +24,14 @@ export default function MessageBox(props){
 
 
 	return(
-		<MessageCard clamp = {clampLimit}>
+		<MessageCard clamp = {clampLimit} 
+													bgColor={props.authorMsg == props.currentUsername? "#0084FF" : "#dee2e3"}
+													textColor={props.authorMsg == props.currentUsername? "white" : "black"}>
+										
 			<span className="text-contain">
+			{props.authorMsg == props.currentUsername?
+			null : <span className="username">{props.authorMsg}</span>  }
+
 			{props.toReply[0] === true ? 
 				<a>
 				<div className="reply-contain">
@@ -36,7 +42,7 @@ export default function MessageBox(props){
 			
 			<p  className="message" id = {props.msg[0]}>{props.msg[1]}</p>
 				{showReadMore ? <span className= "read-more"
-				onClick={()=> {setClampLimit(clampLimit*2)}}>leer mas</span> : null}
+				onClick={()=> {setClampLimit(clampLimit*4)}}>leer mas</span> : null}
 
 			</span>
 		
