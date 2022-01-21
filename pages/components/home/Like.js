@@ -9,12 +9,14 @@ export default function Like(props){
 	
 let [count, setCount] = useState(0)
 let [like, setLike] = useState(true)
+let [color, setColor] = useState(false)
 const {messages, setMessages} = useReply();
 
 let index = messages.map(message => message.id).indexOf(props.id)
 
-const handleCount = ()=>{
 
+const handleCount = ()=>{
+		setColor(!color)
 		setLike(!like)
 		if(like){
 			count = 1
@@ -42,7 +44,7 @@ const handleCount = ()=>{
 
 	return(
 		<>
-		<LikeStyles>
+		<LikeStyles colorLike={color?"red":"black"}>
 			<FavoriteIcon onClick={handleCount} />
 			<span>{messages[index].likes === 0 ? "" : messages[index].likes}</span>
 		</LikeStyles>

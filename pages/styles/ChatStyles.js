@@ -18,6 +18,23 @@ export const MessageCard = styled.div`
         margin-right: 10px;
     }
 
+    .reply-contain{
+        background:white;
+    color: #8c8c8c;
+    text-align:justify;
+        padding:5px;
+        border-radius:10px;
+
+        p{
+            -webkit-line-clamp:3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+        }
+    }
+
     .text-contain{
          padding: 20px;
         background:#0084FF;
@@ -27,7 +44,7 @@ export const MessageCard = styled.div`
      margin: 10px;
 
     }
-    p{
+    .message{
         background:#0084FF;
     text-align: justify;
   -webkit-line-clamp: ${props => props.clamp};
@@ -96,13 +113,15 @@ export const ChatContain = styled.div`
 
 export const LikeStyles = styled.span`
     cursor: pointer;
-    color: black;
+    color:${props => props.colorLike};
 `
+
 
 export const ReplyStyles = styled.span`
     cursor: pointer;
     color: black;
 `
+
 
 export const ReplyContain = styled.span`
 max-width: 465px;
@@ -118,6 +137,7 @@ margin-left:5px;
 }
 
 .text-contain-reply{
+    margin-top:5px;
     position:relative;
     display:flex;
     color: #8c8c8c;
