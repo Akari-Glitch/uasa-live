@@ -1,11 +1,26 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { MessageCard } from "../../styles/ChatStyles"
 import Like from "./Like"
 import Reply from "./Reply"
 
 export default function MessageBox(props){
   const [clampLimit, setClampLimit] = useState(8);
+	const [showReadMore, setShowReadMore] = useState(false)
+		
 	
+	useEffect(()=>{
+		let el = document.getElementById(`${props.msg[0]}`)
+		
+		if(el.clientWidth < el.scrollWidth 
+      || el.clientHeight < el.scrollHeight){
+
+			setShowReadMore(true)
+		}else{
+			setShowReadMore(false)
+		}
+
+	}, [clampLimit])
+
 
 
 	return(
@@ -20,12 +35,11 @@ export default function MessageBox(props){
 			: null}
 			
 			<p  className="message" id = {props.msg[0]}>{props.msg[1]}</p>
+				{showReadMore ? <span className= "read-more"
+				onClick={()=> {setClampLimit(clampLimit*2)}}>leer mas</span> : null}
+
 			</span>
-		{/*	<button onClick={()=> {
-				handleEvent()
-				setClampLimit(clampLimit+20)}}
-				>leer mas</button>
-*/}
+		
 	<div className="dinamic-message">
 			<Like id = {props.msg[0]}/>
 			<Reply idCard = {props.msg[0]}/>

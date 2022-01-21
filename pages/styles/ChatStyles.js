@@ -54,7 +54,16 @@ export const MessageCard = styled.div`
   text-overflow: ellipsis;
   overflow-wrap: break-word;
 
+
+
     }
+    .read-more{
+    color: black;
+    text-decoration: underline black;        
+    cursor: pointer;
+  }
+
+    
 `
 
 export const ChatContain = styled.div`
