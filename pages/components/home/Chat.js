@@ -18,6 +18,8 @@ export default function Chat(props){
   }
 
   const handlePost = () =>{
+    document.getElementById("input-message").value = ""
+
      const message = {
         id: new Date().getTime(),
         text: text,
@@ -76,7 +78,8 @@ useEffect(()=>{
     {replyStatus ? <ReplyBox /> : null}
     <div className="contain-input">
       <input
-        placeholder="Escribe un mensaje"
+        id="input-message"
+        placeholder="write here"
         onChange={handleChange}
       ></input>
       <div className = "send-btn"><SendIcon  onClick={handlePost}/></div>

@@ -37,7 +37,7 @@ export default function Home() {
     <div className="input-contain">
      <input id="username"
             type="text" 
-            placeholder="escribe tu nombre"
+            placeholder="username"
             onChange={(e)=> setCurrentUser(e.target.value) }
             className="user-name" />
      
