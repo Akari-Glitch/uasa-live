@@ -25,7 +25,7 @@ export default function Reply(props){
 
 export function ReplyBox(){
 
-	const {infoReply, setReplyStatus} = useReply()
+	const {infoReply, setReplyStatus} = useMessage()
 
 	const handleCloseReply = ()=>setReplyStatus(false)
 	return(
