@@ -18,6 +18,8 @@ export default function Chat(props){
   }
 
   const handlePost = () =>{
+    if(!!text){
+      document.getElementById("input-message").value = "";  
      const message = {
         id: new Date().getTime(),
         text: text,
@@ -30,7 +32,7 @@ export default function Chat(props){
     socket.emit('message', message);
     setMessages([...messages, message]);
     setText("")
-   
+   }
 
   }
 
@@ -76,6 +78,7 @@ useEffect(()=>{
     {replyStatus ? <ReplyBox /> : null}
     <div className="contain-input">
       <input
+        id="input-message"
         placeholder="Escribe un mensaje"
         onChange={handleChange}
       ></input>
