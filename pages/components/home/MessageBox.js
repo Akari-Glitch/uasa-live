@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import { MessageCard } from "../../styles/ChatStyles"
+import { MessageBoxStyles } from "../../styles/ChatStyles"
 import Like from "./Like"
 import Reply from "./Reply"
 
@@ -24,7 +24,7 @@ export default function MessageBox(props){
 
 
 	return(
-		<MessageCard clamp = {clampLimit} 
+		<MessageBoxStyles clamp = {clampLimit} 
 													bgColor={props.authorMsg == props.currentUsername? "#0084FF" : "#dee2e3"}
 													textColor={props.authorMsg == props.currentUsername? "white" : "black"}>
 										
@@ -50,6 +50,6 @@ export default function MessageBox(props){
 			<Like id = {props.msg[0]}/>
 			<Reply idCard = {props.msg[0]}/>
 			</div>
-		</MessageCard>
+		</MessageBoxStyles>
 		)
 }

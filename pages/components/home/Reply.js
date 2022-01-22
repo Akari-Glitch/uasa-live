@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import { ReplyStyles, ReplyContain } from "../../styles/ChatStyles"
 import io from "socket.io-client"
 import ReplyIcon from '@mui/icons-material/Reply'
-import { useReply } from "../../context/reply-context"
+import { useMessage } from "../../context/message-context"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 
 export default function Reply(props){
- const { replyStatus, setReplyStatus, setInfoReply} = useReply();
+ const { replyStatus, setReplyStatus, setInfoReply} = useMessage();
 
  const handleReply = () => {
  	

@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useMemo} from "react";
 
-const ReplyContext = React.createContext();
+const MessageContext = React.createContext();
 
-export function ReplyProvider(props){
+export function MessageProvider(props){
 	const [replyStatus, setReplyStatus] = useState(false)
 	const [infoReply, setInfoReply] = useState("");
     const [messages, setMessages] = useState([])
@@ -12,11 +12,11 @@ export function ReplyProvider(props){
 		return({replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages})
 	}, [replyStatus, messages, infoReply])
 
-	return <ReplyContext.Provider value={value} {...props}/>
+	return <MessageContext.Provider value={value} {...props}/>
 }
 
-export function useReply(){
-	const context = React.useContext(ReplyContext)
+export function useMessage(){
+	const context = React.useContext(MessageContext)
 
 	if(!context){
 		throw new Error('error')

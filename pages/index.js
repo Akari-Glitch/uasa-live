@@ -2,7 +2,7 @@ import { useState } from "react"
 import Head from 'next/head'
 import Image from 'next/image'
 import Chat  from './components/home/Chat'
-import { ReplyProvider } from "./context/reply-context"
+import { MessageProvider } from "./context/message-context"
 import {SigninContent} from "./styles/SigninStyles"
 
 export default function Home() {
@@ -18,9 +18,9 @@ export default function Home() {
     </Head>
      { join ? 
       <>
-      <ReplyProvider>
+      <MessageProvider>
       <Chat username={currentUser}/>
-      </ReplyProvider>
+      </MessageProvider>
       </>
       
 

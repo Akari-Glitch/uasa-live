@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const MessageCard = styled.div`
+export const MessageBoxStyles = styled.div`
     
     display:flex;
     align-items:flex-end;

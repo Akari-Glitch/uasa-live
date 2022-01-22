@@ -4,22 +4,20 @@ import io from "socket.io-client"
 import SendIcon from "@mui/icons-material/Send"
 import  { ChatContain } from "../../styles/ChatStyles"
 import MessageBox from "./MessageBox"
-import { useReply } from "../../context/reply-context"
+import { useMessage } from "../../context/message-context"
 import Like from "./Like"
 import {ReplyBox} from "./Reply"
 const socket = io()
 
 export default function Chat(props){
     const [text, setText] = useState("")        
-    const { replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages} = useReply();
+    const { replyStatus, setReplyStatus, infoReply, setInfoReply, messages, setMessages} = useMessage();
 
     const handleChange = (event)=>{
     setText(event.target.value);
   }
 
   const handlePost = () =>{
-    if(!!text){
-      document.getElementById("input-message").value = "";  
      const message = {
         id: new Date().getTime(),
         text: text,
@@ -32,7 +30,7 @@ export default function Chat(props){
     socket.emit('message', message);
     setMessages([...messages, message]);
     setText("")
-   }
+   
 
   }
 
@@ -78,7 +76,6 @@ useEffect(()=>{
     {replyStatus ? <ReplyBox /> : null}
     <div className="contain-input">
       <input
-        id="input-message"
         placeholder="Escribe un mensaje"
         onChange={handleChange}
       ></input>

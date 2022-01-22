@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import FavoriteIcon from  "@mui/icons-material/Favorite";
 import { LikeStyles }from "../../styles/ChatStyles"
-import { useReply } from "../../context/reply-context"
+import { useMessage } from "../../context/message-context"
 import io from "socket.io-client"
 
 const socket = io()
@@ -10,7 +10,7 @@ export default function Like(props){
 let [count, setCount] = useState(0)
 let [like, setLike] = useState(true)
 let [color, setColor] = useState(false)
-const {messages, setMessages} = useReply();
+const {messages, setMessages} = useMessage();
 
 let index = messages.map(message => message.id).indexOf(props.id)
 

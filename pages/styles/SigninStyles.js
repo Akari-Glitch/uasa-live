@@ -18,6 +18,10 @@ export const SigninContent = styled.div`
 			color: #0084FF;
 			font-size:60px;
 		}
+
+		p{
+			font-size:20px;
+		}
 	}
 
 	.input-contain{
